@@ -17,7 +17,9 @@ jobs:
           gradle-version: 8.7
       - name: Build
         run: |
-          DIR=$(dirname "$(find . -name settings.gradle.kts | head -1)")
+          mkdir -p proj
+          unzip -o -q ./CrosshairHud.zip -d proj
+          DIR=$(dirname "$(find proj -name settings.gradle.kts | head -1)")
           cd "$DIR"
           gradle assembleDebug --no-daemon
           mkdir -p "$GITHUB_WORKSPACE/out"
